@@ -51,7 +51,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
         let heading = NSTextField(labelWithString:"FPKG Mac Converter")
         heading.font = .systemFont(ofSize:30,weight:.bold)
         root.addArrangedSubview(heading)
-        let subtitle = NSTextField(labelWithString:"I tuoi giochi, leggibili anche su Mac.")
+        let subtitle = NSTextField(labelWithString:"Converti immagini e cartelle di giochi PS5 in pacchetti FPKG verificati.")
         subtitle.textColor = .secondaryLabelColor; root.addArrangedSubview(subtitle)
         root.addArrangedSubview(NSTextField(labelWithString:"1   SORGENTE"))
         source.placeholderString="Seleziona il file .ffpfsc oppure la cartella del gioco";source.isEditable=false
@@ -81,7 +81,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
         scroll.documentView=log;root.addArrangedSubview(scroll)
         scroll.widthAnchor.constraint(equalTo:root.widthAnchor).isActive=true
         scroll.heightAnchor.constraint(greaterThanOrEqualToConstant:150).isActive=true
-        let credits=NSTextField(labelWithString:"Convertitore: fpkg-cli · LibProsperoPkg · Kraken 7 · FPKG Mac Converter 1.3")
+        let credits=NSTextField(labelWithString:"Convertitore FPKG Mac · fpkg-cli · LibProsperoPkg · Kraken 7 · versione 1.3.2")
         credits.font = .systemFont(ofSize:10);credits.textColor = .tertiaryLabelColor;root.addArrangedSubview(credits)
         window.center();window.makeKeyAndOrderFront(nil);NSApp.activate(ignoringOtherApps:true)
     }
