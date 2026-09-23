@@ -12,6 +12,6 @@ Prova documentata:
 - Verifica finale completa: 10 controlli superati, inclusi checksum PFS, NAPS, file interni e CRC PlayGo.
 - Gli altri due dump avevano un collision resolver obsoleto; l’app li legge comunque con avviso diagnostico.
 
-Per usarla: apri FPKG Mac Builder, scegli una sorgente supportata, scegli una cartella di destinazione con spazio libero e premi **Crea e verifica PKG**. La versione 1.3.4 incorpora fpkg-cli, il runtime .NET 10 Apple Silicon, LibProsperoPkg e la patch di lettura `.ffpfsc`; non richiede installazioni separate di Python o .NET.
+Per usarla: apri FPKG Mac Builder, scegli una sorgente supportata, scegli una cartella di destinazione con spazio libero e premi **Crea e verifica PKG**. La versione 1.0 incorpora fpkg-cli, il runtime .NET 10 Apple Silicon, LibProsperoPkg e la patch di lettura `.ffpfsc`; non richiede installazioni separate di Python o .NET.
 
 La destinazione deve avere spazio sufficiente per l’estrazione temporanea e il PKG finale. Per giochi molto grandi conviene usare un disco con almeno il doppio della dimensione del dump.

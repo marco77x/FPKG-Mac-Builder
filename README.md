@@ -6,7 +6,7 @@ Il motore è `fpkg-cli` con compressione BuiltIn Kraken livello 7. La versione a
 
 ## Stato
 
-La build 1.3.4 è stata verificata su immagini reali di giochi PS5: icona, Content ID, Title ID, versione, modalità immagine e dimensione vengono letti correttamente. Il backend diretto è stato verificato con creazione e verifica completa del PKG a Kraken 7.
+La build 1.0 è stata verificata su immagini reali di giochi PS5: icona, Content ID, Title ID, versione, modalità immagine e dimensione vengono letti correttamente. Il backend diretto è stato verificato con creazione e verifica completa del PKG a Kraken 7.
 
 ## Build locale
 

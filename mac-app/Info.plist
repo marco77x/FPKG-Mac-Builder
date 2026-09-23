@@ -8,8 +8,8 @@
 	<key>CFBundleIdentifier</key><string>local.fpkg.mac</string>
 	<key>CFBundleName</key><string>FPKG Mac Builder</string>
 	<key>CFBundlePackageType</key><string>APPL</string>
-	<key>CFBundleShortVersionString</key><string>1.3.4</string>
-	<key>CFBundleVersion</key><string>1.3.4</string>
+	<key>CFBundleShortVersionString</key><string>1.0</string>
+	<key>CFBundleVersion</key><string>1.0</string>
 	<key>LSMinimumSystemVersion</key><string>14.0</string>
 	<key>NSHighResolutionCapable</key><true/>
 	<key>NSHumanReadableCopyright</key><string>FPKG Mac Builder — local utility for owned PS5 dumps</string>
