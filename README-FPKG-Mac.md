@@ -1,6 +1,6 @@
-# FPKG Mac Converter
+# FPKG Mac Builder
 
-App macOS installata come `FPKG Mac Converter.app`.
+App macOS installata come `FPKG Mac Builder.app`.
 
 Questa versione converte cartelle di gioco e immagini `.ffpfsc` e `.exfat`. Il collegamento ai progetti `.gp5` e ai formati `.ffpkg` e `.ffpfs` è previsto per versioni successive. Il motore è `fpkg-cli nativo (Kraken 7)`, integrato dal progetto [rdmrocha/fpkg-cli](https://github.com/rdmrocha/fpkg-cli); gli originali non vengono modificati.
 
@@ -12,6 +12,6 @@ Prova documentata:
 - Verifica finale completa: 10 controlli superati, inclusi checksum PFS, NAPS, file interni e CRC PlayGo.
 - Gli altri due dump avevano un collision resolver obsoleto; l’app li legge comunque con avviso diagnostico.
 
-Per usarla: apri FPKG Mac Converter, scegli una sorgente supportata, scegli una cartella di destinazione con spazio libero e premi **Crea e verifica PKG**. La versione 1.3.3 incorpora fpkg-cli, il runtime .NET 10 Apple Silicon, LibProsperoPkg e la patch di lettura `.ffpfsc`; non richiede installazioni separate di Python o .NET.
+Per usarla: apri FPKG Mac Builder, scegli una sorgente supportata, scegli una cartella di destinazione con spazio libero e premi **Crea e verifica PKG**. La versione 1.3.4 incorpora fpkg-cli, il runtime .NET 10 Apple Silicon, LibProsperoPkg e la patch di lettura `.ffpfsc`; non richiede installazioni separate di Python o .NET.
 
 La destinazione deve avere spazio sufficiente per l’estrazione temporanea e il PKG finale. Per giochi molto grandi conviene usare un disco con almeno il doppio della dimensione del dump.

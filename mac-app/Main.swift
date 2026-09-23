@@ -33,7 +33,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
         let menu = NSMenu()
         let appItem = NSMenuItem(); menu.addItem(appItem)
         let appMenu = NSMenu(); appItem.submenu = appMenu
-        appMenu.addItem(withTitle: "Esci da FPKG Mac Converter", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q")
+        appMenu.addItem(withTitle: "Esci da FPKG Mac Builder", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q")
         let editItem = NSMenuItem(); menu.addItem(editItem)
         let edit = NSMenu(title: "Modifica"); editItem.submenu = edit
         edit.addItem(withTitle: "Copia", action: #selector(NSText.copy(_:)), keyEquivalent: "c")
@@ -41,14 +41,14 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
         edit.addItem(withTitle: "Seleziona tutto", action: #selector(NSText.selectAll(_:)), keyEquivalent: "a")
         NSApp.mainMenu = menu
         window = NSWindow(contentRect: NSRect(x:0,y:0,width:1040,height:860), styleMask:[.titled,.closable,.miniaturizable,.resizable], backing:.buffered, defer:false)
-        window.title = "FPKG Mac Converter"
+        window.title = "FPKG Mac Builder"
         window.minSize = NSSize(width:900,height:760)
         window.delegate = self
         let root = NSStackView(); root.orientation = .vertical; root.alignment = .leading; root.spacing = 14
         root.translatesAutoresizingMaskIntoConstraints = false
         window.contentView!.addSubview(root)
         NSLayoutConstraint.activate([root.leadingAnchor.constraint(equalTo:window.contentView!.leadingAnchor,constant:26),root.trailingAnchor.constraint(equalTo:window.contentView!.trailingAnchor,constant:-26),root.topAnchor.constraint(equalTo:window.contentView!.topAnchor,constant:24),root.bottomAnchor.constraint(equalTo:window.contentView!.bottomAnchor,constant:-24)])
-        let heading = NSTextField(labelWithString:"FPKG Mac Converter")
+        let heading = NSTextField(labelWithString:"FPKG Mac Builder")
         heading.font = .systemFont(ofSize:30,weight:.bold)
         root.addArrangedSubview(heading)
         let subtitle = NSTextField(labelWithString:"Converti immagini e cartelle di giochi PS5 in pacchetti FPKG verificati.")
@@ -81,7 +81,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
         scroll.documentView=log;root.addArrangedSubview(scroll)
         scroll.widthAnchor.constraint(equalTo:root.widthAnchor).isActive=true
         scroll.heightAnchor.constraint(greaterThanOrEqualToConstant:150).isActive=true
-        let credits=NSTextField(labelWithString:"Convertitore FPKG Mac · fpkg-cli · LibProsperoPkg · Kraken 7 · versione 1.3.3")
+        let credits=NSTextField(labelWithString:"Builder FPKG Mac · fpkg-cli · LibProsperoPkg · Kraken 7 · versione 1.3.4")
         credits.font = .systemFont(ofSize:10);credits.textColor = .tertiaryLabelColor;root.addArrangedSubview(credits)
         window.center();window.makeKeyAndOrderFront(nil);NSApp.activate(ignoringOtherApps:true)
     }

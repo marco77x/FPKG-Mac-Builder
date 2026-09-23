@@ -1,6 +1,6 @@
-# FPKG Mac Converter — third-party components
+# FPKG Mac Builder — third-party components
 
-FPKG Mac Converter includes LibProsperoPkg, distributed under the GNU General Public
+FPKG Mac Builder includes LibProsperoPkg, distributed under the GNU General Public
 License version 3 or any later version. Copyright (C) 2026 SvenGDK.
 
 The original project, source code, license and notices are available at:
