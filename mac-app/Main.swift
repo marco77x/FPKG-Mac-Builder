@@ -4,16 +4,16 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
     var window: NSWindow!
     let source = NSTextField(string: "")
     let output = NSTextField(string: "")
-    let titleLabel = NSTextField(labelWithString: "Scegli un gioco per iniziare")
-    let detailLabel = NSTextField(wrappingLabelWithString: "Cartelle e contenitori FFPFSC con conversione nativa Kraken 7.")
+    let titleLabel = NSTextField(labelWithString: "Choose a game to begin")
+    let detailLabel = NSTextField(wrappingLabelWithString: "Game folders and FFPFSC containers with native Kraken 7 conversion.")
     let gameIcon = NSImageView()
     let contentIDValue = NSTextField(labelWithString: "—")
     let titleIDValue = NSTextField(labelWithString: "—")
     let versionValue = NSTextField(labelWithString: "—")
-    let packageTypeValue = NSTextField(labelWithString: "Applicazione / Gioco (APP)")
+    let packageTypeValue = NSTextField(labelWithString: "Application / Game (APP)")
     let imageModeValue = NSTextField(labelWithString: "PLAINTEXT_NOAUTH")
     let sourceFormatValue = NSTextField(labelWithString: "—")
-    let status = NSTextField(labelWithString: "Pronto")
+    let status = NSTextField(labelWithString: "Ready")
     let progress = NSProgressIndicator()
     let log = NSTextView()
     let engine = NSPopUpButton()
@@ -33,12 +33,12 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
         let menu = NSMenu()
         let appItem = NSMenuItem(); menu.addItem(appItem)
         let appMenu = NSMenu(); appItem.submenu = appMenu
-        appMenu.addItem(withTitle: "Esci da FPKG Mac Builder", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q")
+        appMenu.addItem(withTitle: "Quit FPKG Mac Builder", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q")
         let editItem = NSMenuItem(); menu.addItem(editItem)
-        let edit = NSMenu(title: "Modifica"); editItem.submenu = edit
-        edit.addItem(withTitle: "Copia", action: #selector(NSText.copy(_:)), keyEquivalent: "c")
-        edit.addItem(withTitle: "Incolla", action: #selector(NSText.paste(_:)), keyEquivalent: "v")
-        edit.addItem(withTitle: "Seleziona tutto", action: #selector(NSText.selectAll(_:)), keyEquivalent: "a")
+        let edit = NSMenu(title: "Edit"); editItem.submenu = edit
+        edit.addItem(withTitle: "Copy", action: #selector(NSText.copy(_:)), keyEquivalent: "c")
+        edit.addItem(withTitle: "Paste", action: #selector(NSText.paste(_:)), keyEquivalent: "v")
+        edit.addItem(withTitle: "Select All", action: #selector(NSText.selectAll(_:)), keyEquivalent: "a")
         NSApp.mainMenu = menu
         window = NSWindow(contentRect: NSRect(x:0,y:0,width:1040,height:860), styleMask:[.titled,.closable,.miniaturizable,.resizable], backing:.buffered, defer:false)
         window.title = "FPKG Mac Builder"
@@ -51,26 +51,26 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
         let heading = NSTextField(labelWithString:"FPKG Mac Builder")
         heading.font = .systemFont(ofSize:30,weight:.bold)
         root.addArrangedSubview(heading)
-        let subtitle = NSTextField(labelWithString:"Converti immagini e cartelle di giochi PS5 in pacchetti FPKG verificati.")
+        let subtitle = NSTextField(labelWithString:"Convert PS5 game images and folders into verified FPKG packages.")
         subtitle.textColor = .secondaryLabelColor; root.addArrangedSubview(subtitle)
-        root.addArrangedSubview(NSTextField(labelWithString:"1   SORGENTE"))
-        source.placeholderString="Seleziona il file .ffpfsc oppure la cartella del gioco";source.isEditable=false
-        let file = button("Scegli file…",#selector(pickFile)); let folder=button("Cartella…",#selector(pickFolder))
+        root.addArrangedSubview(NSTextField(labelWithString:"1   SOURCE"))
+        source.placeholderString="Select an .ffpfsc file or game folder";source.isEditable=false
+        let file = button("Choose File…",#selector(pickFile)); let folder=button("Folder…",#selector(pickFolder))
         addRow(root,[source,file,folder]);controls += [file,folder]
         let detailsCard=packageDetailsCard();root.addArrangedSubview(detailsCard)
         detailsCard.widthAnchor.constraint(equalTo:root.widthAnchor).isActive=true
-        root.addArrangedSubview(NSTextField(labelWithString:"2   DESTINAZIONE DEL PACCHETTO"))
-        output.placeholderString="Scegli un disco con spazio per estrazione e pacchetto";output.isEditable=false
-        let dest=button("Scegli…",#selector(pickOutput));addRow(root,[output,dest]);controls.append(dest)
-        engine.addItem(withTitle:"fpkg-cli nativo (Kraken 7)")
+        root.addArrangedSubview(NSTextField(labelWithString:"2   PACKAGE DESTINATION"))
+        output.placeholderString="Choose a disk with space for extraction and the package";output.isEditable=false
+        let dest=button("Choose…",#selector(pickOutput));addRow(root,[output,dest]);controls.append(dest)
+        engine.addItem(withTitle:"Native fpkg-cli (Kraken 7)")
         engine.selectItem(at:0)
         engine.isEnabled = false
-        let label=NSTextField(labelWithString:"Motore:");addRow(root,[label,engine]);controls.append(engine)
-        let note=NSTextField(wrappingLabelWithString:"L’originale viene letto senza modificarlo. Ogni conversione crea una cartella separata; i file temporanei vengono rimossi al termine. Il pacchetto finale viene verificato.")
+        let label=NSTextField(labelWithString:"Engine:");addRow(root,[label,engine]);controls.append(engine)
+        let note=NSTextField(wrappingLabelWithString:"The original source is read without modification. Each conversion uses a separate folder; temporary files are removed when it finishes. The final package is verified.")
         note.font = .systemFont(ofSize:12);note.textColor = .secondaryLabelColor;root.addArrangedSubview(note)
-        buildButton=button("Crea e verifica PKG",#selector(build));buildButton.bezelStyle = .rounded;buildButton.contentTintColor = .systemGreen;buildButton.isEnabled=false
-        cancelButton=button("Annulla",#selector(cancel));cancelButton.isEnabled=false
-        showButton=button("Mostra risultato",#selector(showResult));showButton.isEnabled=false
+        buildButton=button("Create and Verify PKG",#selector(build));buildButton.bezelStyle = .rounded;buildButton.contentTintColor = .systemGreen;buildButton.isEnabled=false
+        cancelButton=button("Cancel",#selector(cancel));cancelButton.isEnabled=false
+        showButton=button("Show Result",#selector(showResult));showButton.isEnabled=false
         addRow(root,[buildButton,cancelButton,showButton])
         progress.minValue=0;progress.maxValue=1;progress.isIndeterminate=false;progress.style = .bar
         root.addArrangedSubview(progress);progress.widthAnchor.constraint(equalTo:root.widthAnchor).isActive=true
@@ -81,7 +81,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
         scroll.documentView=log;root.addArrangedSubview(scroll)
         scroll.widthAnchor.constraint(equalTo:root.widthAnchor).isActive=true
         scroll.heightAnchor.constraint(greaterThanOrEqualToConstant:150).isActive=true
-        let credits=NSTextField(labelWithString:"Builder FPKG Mac · fpkg-cli · LibProsperoPkg · Kraken 7 · versione 1.0")
+        let credits=NSTextField(labelWithString:"FPKG Mac Builder · fpkg-cli · LibProsperoPkg · Kraken 7 · version 1.0")
         credits.font = .systemFont(ofSize:10);credits.textColor = .tertiaryLabelColor;root.addArrangedSubview(credits)
         window.center();window.makeKeyAndOrderFront(nil);NSApp.activate(ignoringOtherApps:true)
     }
@@ -113,8 +113,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
 
         let grid=NSGridView(views:[
             [fieldName("CONTENT ID"),contentIDValue,fieldName("TITLE ID"),titleIDValue],
-            [fieldName("VERSIONE"),versionValue,fieldName("TIPO PACCHETTO"),packageTypeValue],
-            [fieldName("IMAGE MODE"),imageModeValue,fieldName("FORMATO SORGENTE"),sourceFormatValue]
+            [fieldName("VERSION"),versionValue,fieldName("PACKAGE TYPE"),packageTypeValue],
+            [fieldName("IMAGE MODE"),imageModeValue,fieldName("SOURCE FORMAT"),sourceFormatValue]
         ])
         grid.rowSpacing=7;grid.columnSpacing=12;grid.xPlacement = .leading;grid.yPlacement = .center
         for value in [contentIDValue,titleIDValue,versionValue,packageTypeValue,imageModeValue,sourceFormatValue] {
@@ -143,8 +143,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
         panel.beginSheetModal(for:window){ response in
             guard response == .OK, let url=panel.url else{return}
             self.source.stringValue=url.path;self.inspectedSource=nil;self.resultURL=nil;self.showButton.isEnabled=false
-            self.titleLabel.stringValue="Lettura del gioco…"
-            self.detailLabel.stringValue="Analisi dei metadati e dell’icona in corso…"
+            self.titleLabel.stringValue="Reading game…"
+            self.detailLabel.stringValue="Reading metadata and icon…"
             self.gameIcon.image=NSImage(named:NSImage.applicationIconName)
             self.start(["inspect",url.path],building:false)
         }
@@ -169,13 +169,13 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
         guard let event=(try? JSONSerialization.jsonObject(with:data)) as? [String:Any],let kind=event["event"] as? String else{if let text=String(data:data,encoding:.utf8){append(text)};return}
         switch kind {
         case "metadata":
-            titleLabel.stringValue=event["title"] as? String ?? "Gioco"
+            titleLabel.stringValue=event["title"] as? String ?? "Game"
             let size=(event["bytes"] as? Double ?? 0)/1e9
-            detailLabel.stringValue="\(event["files"] as? Int ?? 0) file   ·   \(String(format:"%.2f",size)) GB   ·   sorgente letta senza modifiche"
+            detailLabel.stringValue="\(event["files"] as? Int ?? 0) file   ·   \(String(format:"%.2f",size)) GB   ·   source read without modification"
             contentIDValue.stringValue=event["content_id"] as? String ?? "—"
             titleIDValue.stringValue=event["title_id"] as? String ?? "—"
             versionValue.stringValue=event["version"] as? String ?? "—"
-            packageTypeValue.stringValue=event["package_type"] as? String ?? "Applicazione / Gioco (APP)"
+            packageTypeValue.stringValue=event["package_type"] as? String ?? "Application / Game (APP)"
             imageModeValue.stringValue=event["image_mode"] as? String ?? "PLAINTEXT_NOAUTH"
             sourceFormatValue.stringValue=event["format"] as? String ?? "—"
             if let encoded=event["icon_b64"] as? String,let data=Data(base64Encoded:encoded),let image=NSImage(data:data) {
@@ -186,9 +186,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
             progress.doubleValue=event["value"] as? Double ?? 0
             status.stringValue="\(event["text"] as? String ?? "") — \(event["detail"] as? String ?? "")"
         case "done":
-            progress.doubleValue=1;status.stringValue="Pacchetto creato e verificato"
+            progress.doubleValue=1;status.stringValue="Package created and verified"
             if let path=event["path"] as? String {resultURL=URL(fileURLWithPath:path);append(path);showButton.isEnabled=true}
-        case "error":gotError=true;status.stringValue="Operazione non completata";append(event["text"] as? String ?? "Errore")
+        case "error":gotError=true;status.stringValue="Operation failed";append(event["text"] as? String ?? "Error")
         default:if let text=event["text"] as? String{append(text)}
     }
     }
@@ -196,9 +196,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
         guard process == nil else{return}
         guard let resources=Bundle.main.resourceURL else{return}
         gotError=false;buffer=Data();log.string="";progress.doubleValue=0
-        status.stringValue=building ? "Preparazione della conversione…":"Analisi della sorgente…"
+        status.stringValue=building ? "Preparing conversion…":"Analyzing source…"
         let runtime=resources.appendingPathComponent("runtime.json")
-        guard let data=try? Data(contentsOf:runtime),let config=(try? JSONSerialization.jsonObject(with:data)) as? [String:String],let python=config["python"] else{append("Configurazione Python mancante");return}
+        guard let data=try? Data(contentsOf:runtime),let config=(try? JSONSerialization.jsonObject(with:data)) as? [String:String],let python=config["python"] else{append("Missing Python configuration");return}
         let pythonURL = python.hasPrefix("/") ? URL(fileURLWithPath:python) : resources.appendingPathComponent(python)
         let p=Process();p.executableURL=pythonURL
         var environment = ProcessInfo.processInfo.environment
@@ -220,17 +220,17 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
         }
         p.terminationHandler={ proc in DispatchQueue.main.async{
             self.process=nil;for c in self.controls{c.isEnabled=true};self.cancelButton.isEnabled=false
-            if proc.terminationStatus != 0{self.gotError=true;self.status.stringValue="Operazione non completata — consulta il log"}
-            else if !building && !self.gotError{self.status.stringValue="Sorgente riconosciuta. Scegli la destinazione e crea il pacchetto."}
+            if proc.terminationStatus != 0{self.gotError=true;self.status.stringValue="Operation failed — consulta il log"}
+            else if !building && !self.gotError{self.status.stringValue="Source recognized. Choose a destination and create the package."}
             self.updateBuild()
         }}
         do{try p.run();process=p;for c in controls{c.isEnabled=false};buildButton.isEnabled=false;cancelButton.isEnabled=true}
-        catch{append("Impossibile avviare il motore: \(error.localizedDescription)");status.stringValue="Avvio fallito"}
+        catch{append("Unable to start the engine: \(error.localizedDescription)");status.stringValue="Startup failed"}
     }
-    @objc func cancel(){status.stringValue="Annullamento e pulizia dei temporanei…";cancelButton.isEnabled=false;process?.terminate()}
+    @objc func cancel(){status.stringValue="Cancelmento e pulizia dei temporanei…";cancelButton.isEnabled=false;process?.terminate()}
     @objc func showResult(){if let url=resultURL{NSWorkspace.shared.activateFileViewerSelecting([url])}}
     func applicationShouldTerminate(_ sender:NSApplication)->NSApplication.TerminateReply {
-        if process != nil {let alert=NSAlert();alert.messageText="Operazione in corso";alert.informativeText="Premi Annulla e attendi la pulizia prima di chiudere.";alert.runModal();return .terminateCancel}
+        if process != nil {let alert=NSAlert();alert.messageText="Operation in progress";alert.informativeText="Premi Cancel e attendi la pulizia prima di chiudere.";alert.runModal();return .terminateCancel}
         return .terminateNow
     }
     func windowShouldClose(_ sender:NSWindow)->Bool {if process != nil{return false};NSApp.terminate(nil);return true}

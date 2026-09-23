@@ -1,17 +1,17 @@
 # FPKG Mac Builder
 
-App macOS installata come `FPKG Mac Builder.app`.
+A macOS app installed as `FPKG Mac Builder.app`.
 
-Questa versione converte cartelle di gioco e immagini `.ffpfsc` e `.exfat`. Il collegamento ai progetti `.gp5` e ai formati `.ffpkg` e `.ffpfs` è previsto per versioni successive. Il motore è `fpkg-cli nativo (Kraken 7)`, integrato dal progetto [rdmrocha/fpkg-cli](https://github.com/rdmrocha/fpkg-cli); gli originali non vengono modificati.
+This version converts game folders and `.ffpfsc` and `.exfat` images. Support for `.gp5` projects and `.ffpkg` and `.ffpfs` formats is planned for future versions. The engine is native `fpkg-cli (Kraken 7)`, integrated from [rdmrocha/fpkg-cli](https://github.com/rdmrocha/fpkg-cli); source files are never modified.
 
-Prova documentata:
+Documented test:
 
-- 40/42 immagini del disco riconosciute dall’analisi automatica.
-- Bendy and the Ink Machine riconosciuto, estratto e convertito.
-- Pacchetto prodotto: `risultati/FPKG-d14rvwvj/EP5519-PPSA27616_00-0983640666583317-A0100-V0100.pkg`.
-- Verifica finale completa: 10 controlli superati, inclusi checksum PFS, NAPS, file interni e CRC PlayGo.
-- Gli altri due dump avevano un collision resolver obsoleto; l’app li legge comunque con avviso diagnostico.
+- 40/42 disk images were recognized by automatic analysis.
+- Bendy and the Ink Machine was recognized, extracted, and converted.
+- Output package: `results/FPKG-d14rvwvj/EP5519-PPSA27616_00-0983640666583317-A0100-V0100.pkg`.
+- Full final verification: 10 checks passed, including PFS checksums, NAPS, internal files, and PlayGo CRC.
+- The other two dumps had an obsolete collision resolver; the app still reads them with a diagnostic warning.
 
-Per usarla: apri FPKG Mac Builder, scegli una sorgente supportata, scegli una cartella di destinazione con spazio libero e premi **Crea e verifica PKG**. La versione 1.0 incorpora fpkg-cli, il runtime .NET 10 Apple Silicon, LibProsperoPkg e la patch di lettura `.ffpfsc`; non richiede installazioni separate di Python o .NET.
+To use it, open FPKG Mac Builder, choose a supported source, choose a destination folder with enough free space, and click **Create and Verify PKG**. Version 1.0 includes fpkg-cli, the .NET 10 Apple Silicon runtime, LibProsperoPkg, and the `.ffpfsc` reader patch; separate Python or .NET installations are not required.
 
-La destinazione deve avere spazio sufficiente per l’estrazione temporanea e il PKG finale. Per giochi molto grandi conviene usare un disco con almeno il doppio della dimensione del dump.
+The destination needs enough space for temporary extraction and the final PKG. For very large games, a disk with at least twice the dump size is recommended.

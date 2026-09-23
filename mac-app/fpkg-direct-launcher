@@ -6,11 +6,11 @@ runtime="$here/runtime/dotnet"
 cli="$here/fpkg-tools/bin/fpkg.dll"
 
 if [ ! -x "$runtime" ]; then
-    echo "error: runtime .NET 10 incorporato non trovato" >&2
+    echo "error: embedded .NET 10 runtime not found" >&2
     exit 1
 fi
 if [ ! -f "$cli" ]; then
-    echo "error: fpkg-cli non trovato" >&2
+    echo "error: fpkg-cli not found" >&2
     exit 1
 fi
 
