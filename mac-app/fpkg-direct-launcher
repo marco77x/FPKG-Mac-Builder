@@ -1,0 +1,22 @@
+#!/bin/sh
+set -e
+
+here=$(cd "$(dirname "$0")" && pwd)
+runtime="$here/runtime/dotnet"
+cli="$here/fpkg-tools/bin/fpkg.dll"
+
+if [ ! -x "$runtime" ]; then
+    echo "error: runtime .NET 10 incorporato non trovato" >&2
+    exit 1
+fi
+if [ ! -f "$cli" ]; then
+    echo "error: fpkg-cli non trovato" >&2
+    exit 1
+fi
+
+export DOTNET_ROOT="$here/runtime"
+export DOTNET_CLI_HOME="${TMPDIR:-/tmp}/fpkg-dotnet-home"
+export DOTNET_CLI_TELEMETRY_OPTOUT=1
+export DOTNET_SKIP_FIRST_TIME_EXPERIENCE=1
+mkdir -p "$DOTNET_CLI_HOME"
+exec "$runtime" "$cli" "$@"

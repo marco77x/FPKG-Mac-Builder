@@ -1,0 +1,38 @@
+.DS_Store
+
+# Build products and installed copies
+dist/
+risultati/
+app/
+downloads/
+tools/
+upstream/
+mac-app/backend/
+tools/dotnet/
+tools/dotnet-runtime/
+tools/dotnet-home/
+tools/fpkg-cli-release/
+tools/fpkg-lib/
+tools/fpkg-lib-managed/
+tools/fpkg-cli-upstream/LibProsperoPkg.dll
+tools/fpkg-cli-upstream/LibProsperoPkg.xml
+tools/fpkg-cli-upstream/fpkg-tools/
+tools/fpkg-cli-upstream/**/bin/
+tools/fpkg-cli-upstream/**/obj/
+
+# Generated diagnostics and test outputs
+diagnostics/
+verification/*.log
+verification/output-*/
+verification/extracted/
+verification/output/
+verification/*.ffpfsc
+verification/*.pkg
+
+# Python cache
+**/__pycache__/
+**/*.pyc
+
+# Local backups
+*.previous
+*.bad-copy
