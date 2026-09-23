@@ -1,4 +1,4 @@
-# FPKG Mac
+# FPKG Mac Converter
 
 FPKG Mac è un’applicazione macOS Apple Silicon per leggere immagini PS5 `.ffpfsc`, mostrare i metadati del gioco e creare pacchetti debug `.pkg` verificati.
 

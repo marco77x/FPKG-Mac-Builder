@@ -1,4 +1,4 @@
-# FPKG Mac
+# FPKG Mac Converter
 
 App macOS installata in `~/Applications/FPKG Mac.app`.
 
