@@ -41,7 +41,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
         edit.addItem(withTitle: "Seleziona tutto", action: #selector(NSText.selectAll(_:)), keyEquivalent: "a")
         NSApp.mainMenu = menu
         window = NSWindow(contentRect: NSRect(x:0,y:0,width:1040,height:860), styleMask:[.titled,.closable,.miniaturizable,.resizable], backing:.buffered, defer:false)
-        window.title = "FPKG Mac — PFS annidati"
+        window.title = "FPKG Mac"
         window.minSize = NSSize(width:900,height:760)
         window.delegate = self
         let root = NSStackView(); root.orientation = .vertical; root.alignment = .leading; root.spacing = 14
