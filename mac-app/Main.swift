@@ -199,7 +199,12 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
         status.stringValue=building ? "Preparazione della conversione…":"Analisi della sorgente…"
         let runtime=resources.appendingPathComponent("runtime.json")
         guard let data=try? Data(contentsOf:runtime),let config=(try? JSONSerialization.jsonObject(with:data)) as? [String:String],let python=config["python"] else{append("Configurazione Python mancante");return}
-        let p=Process();p.executableURL=URL(fileURLWithPath:python)
+        let pythonURL = python.hasPrefix("/") ? URL(fileURLWithPath:python) : resources.appendingPathComponent(python)
+        let p=Process();p.executableURL=pythonURL
+        var environment = ProcessInfo.processInfo.environment
+        environment["PYTHONDONTWRITEBYTECODE"] = "1"
+        environment["PYTHONNOUSERSITE"] = "1"
+        p.environment=environment
         p.arguments=["-u",resources.appendingPathComponent("bridge.py").path]+args
         let pipe=Pipe();p.standardOutput=pipe;p.standardError=pipe
         pipe.fileHandleForReading.readabilityHandler={ handle in
