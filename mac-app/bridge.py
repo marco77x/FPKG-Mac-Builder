@@ -183,10 +183,9 @@ def build(source, output, engine):
     try:
         with (job/'conversione.log').open('w') as log:
             staging=job/'temporanei';staging.mkdir()
-            # fpkg-cli's virtual-source path reads a nested .ffpfsc without expanding the
-            # multi-gigabyte payload. The app has one native packaging path: Kraken 7.
-            if engine == 'direct' and source.is_file() and source.suffix.lower() == '.ffpfsc' and DIRECT_CLI.exists():
-                emit('log', text='fpkg-cli: sorgente .ffpfsc in streaming, Kraken livello 7.')
+            # fpkg-cli is the only packaging path. It accepts folders, .ffpfsc and .exfat.
+            if engine == 'direct' and DIRECT_CLI.exists() and (source.is_dir() or source.suffix.lower() in {'.ffpfsc', '.exfat'}):
+                emit('log', text='fpkg-cli: conversione nativa, Kraken livello 7.')
                 direct_out = job/'direct-output'; direct_out.mkdir()
                 try:
                     # Patching is release-specific and must never modify the signed app bundle.
@@ -205,6 +204,7 @@ def build(source, output, engine):
                     return
                 except RuntimeError:
                     raise
+            raise ValueError('Formato sorgente non supportato dal backend nativo: usa una cartella, .ffpfsc o .exfat')
             prepared=source
             with nested(source) as result:
                 if result:

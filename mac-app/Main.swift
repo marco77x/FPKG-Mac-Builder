@@ -81,7 +81,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
         scroll.documentView=log;root.addArrangedSubview(scroll)
         scroll.widthAnchor.constraint(equalTo:root.widthAnchor).isActive=true
         scroll.heightAnchor.constraint(greaterThanOrEqualToConstant:150).isActive=true
-        let credits=NSTextField(labelWithString:"Convertitore FPKG Mac · fpkg-cli · LibProsperoPkg · Kraken 7 · versione 1.3.2")
+        let credits=NSTextField(labelWithString:"Convertitore FPKG Mac · fpkg-cli · LibProsperoPkg · Kraken 7 · versione 1.3.3")
         credits.font = .systemFont(ofSize:10);credits.textColor = .tertiaryLabelColor;root.addArrangedSubview(credits)
         window.center();window.makeKeyAndOrderFront(nil);NSApp.activate(ignoringOtherApps:true)
     }

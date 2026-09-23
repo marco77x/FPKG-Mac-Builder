@@ -2,11 +2,11 @@
 
 FPKG Mac Converter è un’applicazione macOS Apple Silicon per convertire immagini e cartelle di giochi PS5 in pacchetti debug `.pkg` verificati.
 
-Il motore è `fpkg-cli` con compressione BuiltIn Kraken livello 7. La versione attuale accetta cartelle di gioco e immagini `.ffpfsc`, `.exfat`, `.ffpkg` e progetti `.gp5` quando riconosciuti dal backend incluso. Il supporto `.ffpfs` è previsto per una versione successiva. I contenitori `.ffpfsc` vengono letti in streaming tramite il supporto virtual-source.
+Il motore è `fpkg-cli` con compressione BuiltIn Kraken livello 7. La versione attuale dell’interfaccia accetta cartelle di gioco e immagini `.ffpfsc` e `.exfat`. Il collegamento dell’interfaccia ai progetti `.gp5` e ai formati `.ffpkg` e `.ffpfs` è previsto per versioni successive. I contenitori `.ffpfsc` vengono letti in streaming tramite il supporto virtual-source.
 
 ## Stato
 
-La build 1.3.2 è stata verificata su immagini reali di giochi PS5: icona, Content ID, Title ID, versione, modalità immagine e dimensione vengono letti correttamente. Il backend diretto è stato verificato con creazione e verifica completa del PKG a Kraken 7.
+La build 1.3.3 è stata verificata su immagini reali di giochi PS5: icona, Content ID, Title ID, versione, modalità immagine e dimensione vengono letti correttamente. Il backend diretto è stato verificato con creazione e verifica completa del PKG a Kraken 7.
 
 ## Build locale
 
